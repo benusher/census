@@ -89,12 +89,43 @@ object Census {
     "Marley", "Piper", "Rhea", "Ariella", "Isra", "Maci", "Saffron"
   )
 
+  // http://surname.sofeminine.co.uk/w/surnames/most-common-surnames-in-great-britain.html
   private val lastNames: Set[String] = Set(
-    "Smith", "Jones", "Williams", "Brown", "Taylor", "Davies", "Wilson", "Evans", "Thomas", "Johnson", "Roberts", "Walker", "Wright",
-    "Thompson", "Robinson", "White", "Hughes", "Edwards", "Hall", "Green", "Martin", "Wood", "Lewis", "Harris", "Clarke", "Jackson",
-    "Clark", "Turner", "Scott", "Hill", "Moore", "Cooper", "Ward", "Morris", "King", "Watson", "Harrison", "Morgan", "Baker", "Young",
-    "Patel", "Allen", "Anderson", "Mitchell", "Phillips", "James", "Campbell", "Bell", "Lee", "Kelly"
-
+    "Smith", "Jones", "Taylor", "Williams", "Brown", "Davies", "Evans", "Wilson", "Thomas", "Roberts", "Johnson", "Lewis", "Walker", "Robinson",
+    "Wood", "Thompson", "White", "Watson", "Jackson", "Wright", "Green", "Harris", "Cooper", "King", "Lee", "Martin", "Clarke", "James", "Morgan",
+    "Hughes", "Edwards", "Hill", "Moore", "Clark", "Harrison", "Scott", "Young", "Morris", "Hall", "Ward", "Turner", "Carter", "Phillips",
+    "Mitchell", "Patel", "Adams", "Campbell", "Anderson", "Allen", "Cook", "Bailey", "Parker", "Miller", "Davis", "Murphy", "Price", "Bell",
+    "Baker", "Griffiths", "Kelly", "Simpson", "Marshall", "Collins", "Bennett", "Cox", "Richardson", "Fox", "Gray", "Rose", "Chapman",
+    "Hunt", "Robertson", "Shaw", "Reynolds", "Lloyd", "Ellis", "Richards", "Russell", "Wilkinson", "Khan", "Graham", "Stewart", "Reid", "Murray",
+    "Powell", "Palmer", "Holmes", "Rogers", "Stevens", "Walsh", "Hunter", "Thomson", "Matthews", "Ross", "Owen", "Mason", "Knight",
+    "Kennedy", "Butler", "Saunders", "Cole", "Pearce", "Dean", "Foster", "Harvey", "Hudson", "Gibson", "Mills", "Berry", "Barnes", "Pearson",
+    "Kaur", "Booth", "Dixon", "Grant", "Gordon", "Lane", "Harper", "Ali", "Hart", "Mcdonald", "Brooks", "Ryan", "Carr", "Macdonald",
+    "Hamilton", "Johnston", "West", "Gill", "Dawson", "Armstrong", "Gardner", "Stone", "Andrews", "Williamson", "Barker", "George",
+    "Fisher", "Cunningham", "Watts", "Webb", "Lawrence", "Bradley", "Jenkins", "Wells", "Chambers", "Spencer", "Poole", "Atkinson",
+    "Lawson", "Day", "Woods", "Rees", "Fraser", "Black", "Fletcher", "Hussain", "Willis", "Marsh", "Ahmed", "Doyle", "Lowe", "Burns",
+    "Hopkins", "Nicholson", "Parry", "Newman", "Jordan", "Henderson", "Howard", "Barrett", "Burton", "Riley", "Porter", "Byrne", "Houghton",
+    "John", "Perry", "Baxter", "Ball", "Mccarthy", "Elliott", "Burke", "Gallagher", "Duncan", "Cooke", "Austin", "Read", "Wallace",
+    "Hawkins", "Hayes", "Francis", "Sutton", "Davidson", "Sharp", "Holland", "Moss", "May", "Bates", "Morrison", "Bob", "Oliver", "Kemp",
+    "Page", "Arnold", "Shah", "Stevenson", "Ford", "Potter", "Flynn", "Warren", "Kent", "Alexander", "Field", "Freeman", "Begum",
+    "Rhodes", "O'Neill", "Middleton", "Payne", "Stephenson", "Pritchard", "Gregory", "Bond", "Webster", "Dunn", "Donnelly", "Lucas",
+    "Long", "Jarvis", "Cross", "Stephens", "Reed", "Coleman", "Nicholls", "Bull", "Bartlett", "O'Brien", "Curtis", "Bird", "Patterson",
+    "Tucker", "Bryant", "Lynch", "Mackenzie", "Ferguson", "Cameron", "Lopez", "Haynes", "Bolton", "Hardy", "Heath", "Davey", "Rice",
+    "Jacobs", "Parsons", "Ashton", "Robson", "French", "Farrell", "Walton", "Gilbert", "Mcintyre", "Newton", "Norman", "Higgins",
+    "Hodgson", "Sutherland", "Kay", "Bishop", "Burgess", "Simmons", "Hutchinson", "Moran", "Frost", "Sharma", "Slater", "Greenwood", "Kirk",
+    "Fernandez", "Garcia", "Atkins", "Daniel", "Beattie", "Maxwell", "Todd", "Charles", "Paul", "Crawford", "O'Connor", "Park", "Forrest",
+    "Love", "Rowland", "Connolly", "Sheppard", "Harding", "Banks", "Rowe", "Humphreys", "Garner", "Glover", "Sanderson", "Jeffery",
+    "Goodwin", "Hewitt", "Daniels", "David", "Sullivan", "Yates", "Howe", "Mackay", "Hammond", "Carpenter", "Miles", "Brady", "Preston",
+    "Mcleod", "Lambert", "Knowles", "Leigh", "Hope", "Atherton", "Barton", "Finch", "Blake", "Fuller", "Henry", "Coates", "Hobbs",
+    "Morton", "Howells", "Davison", "Owens", "Gough", "Dennis", "Wilkins", "Duffy", "Woodward", "Griffin", "Bloggs", "Paterson",
+    "Charlton", "Vincent", "Wall", "Bowen", "Browne", "Donaldson", "Rodgers", "Christie", "Gibbons", "Wheeler", "Smart", "Steele",
+    "Bentley", "Quinn", "Hartley", "Barnett", "Randall", "Sweeney", "Fowler", "Allan", "Brennan", "Douglas", "Holt", "Howell",
+    "Bowden", "Cartwright", "Baird", "Watkins", "Kerr", "Dickson", "Benson", "Goddard", "Millar", "Broadhurst", "Doherty", "Holden", "Singh",
+    "Tait", "Reilly", "Thorne", "Wyatt", "Power", "Leach", "Lord", "Nelson", "Hilton", "Adam", "Mcgregor", "Mclean", "Walters", "Jennings", "Lindsay",
+    "Nash", "Hancock", "Hooper", "Carroll", "Silva", "Chadwick", "Abbott", "Stuart", "Mellor", "Seymour", "Boyd", "Perkins", "Dale", "Mann",
+    "Mac", "Haines", "Whelan", "Peters", "Obrien", "Savage", "Barlow", "Sanders", "Mohamed", "Kenny", "Baldwin", "Mcgrath", "Thornton",
+    "Joyce", "Blair", "Whitehouse", "Weaver", "Shepherd", "Whitehead", "Little", "Cullen", "Burrows", "Mcfarlane", "Sinclair", "Swift", "Fleming",
+    "Buckley", "Welch", "Vaughan", "Bradshaw", "Naylor", "Summers", "Briggs", "Schofield", "Osborne", "Coles", "Akhtar", "Cassidy", "Rossi",
+    "Giles", "Whittaker"
   )
 
   def someFirstName: String = oneOf(boysFirstNames.toList ++ girlsFirstNames.toList)
