@@ -17,4 +17,11 @@ class CensusSpec extends FunSuite with Matchers {
 
     lastName should not be 'empty
   }
+
+  test("Pick a company") {
+    val company: String = Census.someCompany
+    println(company)
+
+    company should not be 'empty
+  }
 }

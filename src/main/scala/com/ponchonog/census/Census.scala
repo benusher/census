@@ -1,10 +1,22 @@
 package com.ponchonog.census
 
+import com.ponchonog.census.ReferenceData.{companies, lastNames, girlsFirstNames, boysFirstNames}
+
 import scala.util.Random
 
 object Census {
 
-  private val boysFirstNames: Set[String] = Set(
+  def someFirstName: String = oneOf(boysFirstNames.toList ++ girlsFirstNames.toList)
+
+  def someLastName: String = oneOf(lastNames.toList)
+
+  def someCompany: String = oneOf(companies.toList)
+
+  private def oneOf(values: List[String]): String = Random.shuffle(values).head
+}
+
+private object ReferenceData {
+  val boysFirstNames: Set[String] = Set(
     "Oliver", "Jack", "Harry", "Jacob", "Charlie", "Thomas", "Oscar", "William", "James", "George", "Alfie", "Joshua", "Noah", "Ethan",
     "Muhammad", "Archie", "Leo", "Henry", "Joseph", "Samuel", "Riley", "Daniel", "Mohammed", "Alexander", "Max", "Lucas", "Mason",
     "Logan", "Isaac", "Benjamin", "Dylan", "Jake", "Edward", "Finley", "Freddie", "Harrison", "Tyler", "Sebastian", "Zachary", "Adam",
@@ -45,7 +57,7 @@ object Census {
     "Ciaran", "Shaun", "Caden", "Keaton", "Lloyd", "Maddox", "Braxton", "Imran", "Krish", "Lucian", "Matas", "Nathanael", "Prince"
   )
 
-  private val girlsFirstNames: Set[String] = Set(
+  val girlsFirstNames: Set[String] = Set(
     "Amelia", "Olivia", "Emily", "Ava", "Isla", "Jessica", "Poppy", "Isabella", "Sophie", "Mia", "Ruby", "Lily", "Grace", "Evie",
     "Sophia", "Ella", "Scarlett", "Chloe", "Isabelle", "Freya", "Charlotte", "Sienna", "Daisy", "Phoebe", "Millie", "Eva", "Alice",
     "Lucy", "Florence", "Sofia", "Layla", "Lola", "Holly", "Imogen", "Molly", "Matilda", "Lilly", "Rosie", "Elizabeth", "Erin",
@@ -90,7 +102,7 @@ object Census {
   )
 
   // http://surname.sofeminine.co.uk/w/surnames/most-common-surnames-in-great-britain.html
-  private val lastNames: Set[String] = Set(
+  val lastNames: Set[String] = Set(
     "Smith", "Jones", "Taylor", "Williams", "Brown", "Davies", "Evans", "Wilson", "Thomas", "Roberts", "Johnson", "Lewis", "Walker", "Robinson",
     "Wood", "Thompson", "White", "Watson", "Jackson", "Wright", "Green", "Harris", "Cooper", "King", "Lee", "Martin", "Clarke", "James", "Morgan",
     "Hughes", "Edwards", "Hill", "Moore", "Clark", "Harrison", "Scott", "Young", "Morris", "Hall", "Ward", "Turner", "Carter", "Phillips",
@@ -128,9 +140,67 @@ object Census {
     "Giles", "Whittaker"
   )
 
-  def someFirstName: String = oneOf(boysFirstNames.toList ++ girlsFirstNames.toList)
-
-  def someLastName: String = oneOf(lastNames.toList)
-
-  private def oneOf(values: List[String]): String = Random.shuffle(values).head
+  // FT Global 500
+  //http://www.ft.com/cms/s/0/988051be-fdee-11e3-bd0e-00144feab7de.html#axzz3YXiGqlZf
+  val companies: Set[String] = Set(
+    "Apple", "Exxon Mobil", "Microsoft", "Google", "Berkshire Hathaway", "Johnson & Johnson", "Wells Fargo", "General Electric", "Roche", "Wal-Mart Stores",
+    "Nestle", "Royal Dutch Shell", "JP Morgan Chase", "Novartis", "Chevron", "PetroChina", "Procter & Gamble", "Samsung Electronics", "Pfizer", "IBM",
+    "Industrial & Commercial Bank of China", "Verizon Communications", "Toyota Motor", "HSBC", "China Mobile", "AT&T", "Oracle", "Bank of America",
+    "China Construction Bank", "BHP Billiton", "Coca-Cola", "Anheuser-Busch InBev", "Merck", "Total", "Amazon.com", "BP", "Citigroup",
+    "Agricultural Bank of China", "Walt Disney", "Sanofi", "Qualcomm", "Tencent Holdings", "Philip Morris International", "Comcast", "GlaxoSmithKline",
+    "Intel", "PepsiCo", "Schlumberger", "Facebook", "Volkswagen", "Unilever", "Bank of China", "Siemens", "Ambev", "Commonwealth Bank of Australia",
+    "Cisco Systems", "Bayer", "Banco Santander", "Home Depot", "Gilead Sciences", "Visa", "United Technologies", "British American Tobacco", "Rio Tinto",
+    "Basf", "Daimler", "Taiwan Semiconductor Manufacturing", "Novo Nordisk", "SAP", "Westpac Banking", "L'Oreal", "Vodafone Group", "McDonald's",
+    "Sinopec", "BNP Paribas", "American Express", "Royal Bank Canada", "Saudi Basic Industries", "Inditex", "Amgen", "Boeing", "LVMH", "Gazprom", "Eni",
+    "Softbank", "Statoil", "3M", "CVS Caremark", "Lloyds Banking Group", "Petrobras", "Toronto-Dominion Bank", "ConocoPhillips", "Bristol Myers Squibb",
+    "Union Pacific", "Mastercard", "ANZ Banking", "Abbvie", "AstraZeneca", "BMW", "UnitedHealth Group", "SabMiller", "UBS", "US Bancorp",
+    "Mitsubishi UFJ Financial", "Diageo", "Allianz", "National Australia Bank", "Occidental Petroleum", "Altria Group", "Goldman Sachs", "EDF",
+    "Itau Unibanco", "Honeywell International", "American International Group", "Biogen Idec", "Deutsche Telekom", "Telefonica", "Vale", "eBay",
+    "Twenty-First Century Fox", "BBVA", "Rosneft", "Bank of Nova Scotia", "Viacom", "Tata Consultancy Services", "United Parcel Service",
+    "NTT DoCoMo", "Glencore Xstrata", "CNOOC", "GDF Suez", "China Life Insurance", "Eli Lilly", "Las Vegas Sands", "Honda Motor", "Barclays",
+    "BG Group", "Caterpillar", "Walgreen", "Japan Tobacco", "Axa", "Hennes & Mauritz", "Priceline.com", "Nippon Telegraph & Telephone", "Medtronic",
+    "E I Du Pont de Nemours", "Morgan Stanley", "Hewlett-Packard", "Ford Motor", "Sumitomo Mitsui Financial", "Hyundai Motor", "Bradesco",
+    "Sands China", "ABB", "Monsanto", "Metlife", "Colgate-Palmolive", "Abbott Laboratories", "Dow Chemical", "Mondelez International",
+    "Reckitt Benckiser", "Telstra", "Time Warner", "Express Scripts", "Nordea Bank", "AIA Group", "Celgene", "Hutchison Whampoa", "Airbus", "EMC",
+    "Starbucks", "Intesa Sanpaolo", "Ping An Insurance", "General Motors", "ING", "Prudential", "EOG Resources", "Sberbank of Russia", "Enel",
+    "Unicredit", "Blackrock", "Danaher", "Nike", "Lockheed Martin", "KDDI", "A P Moller - Maersk", "Credit Suisse Group", "Simon Property Group",
+    "Suncor Energy", "Schneider Electric", "National Grid", "Texas Instruments", "Standard Chartered", "Accenture", "Reliance Industries", "Duke Energy",
+    "Halliburton", "BT Group", "Richemont", "Lowe's Companies", "Societe Generale", "Costco Wholesale", "Teva Pharmaceutical",
+    "LyondellBasell Industries", "Continental", "Mizuho Financial Group", "Lukoil", "Thermo Fisher Scientific", "ITC", "Emerson Electric",
+    "Bank of Communications", "Canadian National Railway", "China Shenhua Energy", "PNC Financial Services", "Singapore Telecom", "Naspers", "AMX",
+    "Deutsche Bank", "Zurich Financial Services", "Oil & Natural Gas", "Henkel", "Deutsche Post", "Vinci", "Danone", "Iberdrola",
+    "Capital One Financial", "Valeant Pharmaceuticals International", "Ericsson", "Phillips", "Wesfarmers", "Anadarko Petroleum", "Bank of Montreal",
+    "TJX Cos", "Jardine Matheson", "Denso", "Air Liquide", "Fanuc", "Canadian Natural Resources", "Walmex", "Kimberly-Clark", "Nextera Energy",
+    "Woolworths", "Asml Holding", "Canon", "Dominion Resources", "China Merchants Bank", "McKesson", "Nissan Motor", "Jardine Strategic", "Heineken",
+    "Bank of New York Mellon", "Tesco", "Baxter International", "Imperial Oil", "Credit Agricole", "Munich Re", "Fedex", "Orange", "E On",
+    "Liberty Global", "Prudential Financial", "Southern", "DirecTV", "Imperial Tobacco", "Fast Retailing", "Praxair", "Cheung Kong", "MTN Group",
+    "Target", "Time Warner Cable", "Enbridge", "Takeda Pharmaceutical", "General Dynamics", "Vivendi", "Automatic Data Processing", "Linde",
+    "Hon Hai Precision Industry", "Allergan", "Galaxy Entertainment", "Precision Castparts", "Associated British Foods", "Sasol", "Yahoo", "Sprint",
+    "Qatar National Bank", "Actavis", "Hitachi", "Eaton", "Manulife Financial", "Charles Schwab", "Anglo American", "Syngenta", "Saudi Telecom",
+    "Christian Dior", "Atlas Copco", "Salesforce.com", "Generali", "Swiss RE", "Freeport-McMoran Copper & Gold", "CIBC", "CBS", "Franklin Resources",
+    "Illinois Tool Works", "Seven & I Holding", "Volvo", "Repsol", "Swatch Group", "Rolls-Royce", "China Minsheng Banking", "Telenor", "Deere",
+    "Saint Gobain", "BCE", "Reed Elsevier", "Kinder Morgan", "Kraft Foods Group", "National Oilwell Varco", "Ace", "Yum! Brands", "Covidien",
+    "Sun Hung Kai Properties", "Mitsubishi Estate", "Philips Electronics", "Apache", "Adobe Systems", "CaixaBank", "TeliaSonera", "Ecolab",
+    "Royal Bank of Scotland", "American Tower", "China Citic Bank", "Transcanada", "Surgutneftegas", "Swisscom", "General Mills", "Femsa",
+    "DBS Group", "Johnson Controls", "Infosys Technologies", "China Unicom", "Svenska Handelsbanken", "CSL", "Raytheon", "Industries Qatar",
+    "Pernod-Ricard", "Potash Corporation of Saskatchewan", "Stryker", "Mitsubishi", "Cognizant Technology Solutions", "Hang Seng Bank", "Novatek",
+    "Swedbank", "Boc Hong Kong", "Norfolk Southern", "Alexion Pharmaceuticals", "HDFC Bank", "State Street", "Travelers Cos.", "Al Rajhi Bank",
+    "Woodside Petroleum", "SEB", "Husky Energy", "Delta Air Lines", "Carnival", "Regeneron Pharmaceuticals", "East Japan Railway", "Industrial Bank",
+    "Shanghai Pudong Development Bank", "CSX", "Public Storage", "Sampo", "Corning", "Banco Brasil", "Safran", "Bridgestone", "Shire", "Hyundai Mobis",
+    "Exelon", "Renault", "Aflac", "Reynolds American", "BB&T", "Archer Daniels Midland", "Baker Hughes", "DNB", "Valero Energy", "Gas Natural",
+    "Wellpoint", "Danske Bank", "Carrefour", "Yahoo Japan", "Panasonic", "Thomson Reuters", "Nokia", "Centrica", "Williams Cos.", "Luxottica",
+    "Great West Lifeco", "WPP", "Investor", "Twitter", "Cummins", "United Overseas Bank", "Discover Financial Services", "Devon Energy", "V F",
+    "Compass Group", "Aetna", "Astellas Pharma", "Holcim", "Marsh & Mclennan", "Mitsui Fudosan", "ArcelorMittal", "PPG Industries",
+    "Pioneer Natural Resources", "Northrop Grumman", "T-Mobile US", "Norilsk Nickel", "Canadian Pacific Railway", "PTT", "Malayan Banking",
+    "Astra International", "Hess", "Tenaris", "Oversea-Chinese Banking", "Nippon Steel & Sumitomo Metal", "Mitsui", "China Pacific Insurance",
+    "Emirates Telecommunications", "Kweichow Moutai", "Kering", "KBC Group", "Tesla Motors", "Noble Energy", "Brookfield Asset Management",
+    "Marathon Petroleum", "Aon", "Allstate", "Unibail-Rodamco", "Air Products & Chemicals", "Cielo", "Keyence", "Micron Technology",
+    "Forest Laboratories", "CME Group", "Spectra Energy", "Shin-Etsu Chemical", "Applied Materials", "TE Connectivity", "American Electric Power",
+    "Crown Castle International", "Beiersdorf", "Grupo Mexico", "Marathon Oil", "Nomura", "RWE", "Saic Motor", "Bankia", "Southern Copper", "Posco",
+    "Formosa Petrochemical", "Mitsubishi Electric", "Central Japan Railway", "ICICI Bank", "SK Hynix", "Cardinal Health", "State Bank of India",
+    "Naver", "British Sky Broadcasting", "Paccar", "Scottish & Southern Energy", "Chunghwa Telecom", "Sempra Energy", "Itausa", "Scania",
+    "ARM Holdings", "Aviva", "HCA Holdings", "Michelin", "Mediatek", "Tokio Marine", "Housing Development Finance", "Continental Resources",
+    "Telef Brasil", "Natixis", "Bank Central Asia", "Intercontinental Exchange", "Cigna", "Adidas", "Fresenius", "Becton Dickinson", "Kia Motors",
+    "Kellogg", "Wynn Resorts", "Lafarge", "Telus", "Wipro", "Banco do Brasil Seguridade", "Kroger", "Power Financial", "Intuit"
+  )
 }
