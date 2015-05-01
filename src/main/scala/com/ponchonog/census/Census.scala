@@ -12,10 +12,10 @@ object Census {
 
   def someCompany: String = oneOf(companies)
 
-  def someEmailAddress: String = {
-    val company = s"$someCompany".replace(".com", "").replaceAll( """[^a-zA-Z0-9]""", "")
+  def someEmailAddress(company: String = someCompany): String = {
+    val cleanCompany = s"$company".replace(".com", "").replaceAll( """[^a-zA-Z0-9]""", "")
 
-    s"$someFirstName.$someLastName@$company.com"
+    s"$someFirstName.$someLastName@$cleanCompany.com"
       .replaceAll( """[^@.a-zA-Z0-9-]""", "")
       .toLowerCase
   }

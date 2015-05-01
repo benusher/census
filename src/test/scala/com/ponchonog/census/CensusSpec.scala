@@ -26,7 +26,7 @@ class CensusSpec extends FunSuite with Matchers {
   }
 
   test("Pick an email address") {
-    val emailAddress: String = Census.someEmailAddress
+    val emailAddress: String = Census.someEmailAddress()
     println(emailAddress)
 
     emailAddress should not be 'empty
